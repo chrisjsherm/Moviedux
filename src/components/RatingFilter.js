@@ -9,7 +9,7 @@ export default function RatingFilter({ setRating }) {
   return (
     <>
       <label for="ratingFilter" style={{ "margin-right": "7px" }}>
-        Rating
+        Minimum Rating
       </label>
       <select
         id="ratingFilter"
