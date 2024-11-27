@@ -3,16 +3,14 @@ import "../styles.css";
 import MovieCard from "./MovieCard";
 import SearchBar from "./SearchBar";
 import GenreFilter from "./GenreFilter";
+import RatingFilter from "./RatingFilter";
 
 export default function MoviesGrid() {
   const [allMovies, setAllMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [genreFilter, setGenreFilter] = useState("");
-
-  allMovies.filter((movie) => {
-    return movie.title.toLowerCase().includes(searchTerm.toLowerCase());
-  });
+  const [ratingFilter, setRatingFilter] = useState("");
 
   useEffect(() => {
     fetch("movies.json")
@@ -36,12 +34,27 @@ export default function MoviesGrid() {
         .filter((movie) => {
           return movie.title.toLowerCase().includes(searchTerm.toLowerCase());
         })
+        .filter((movie) => {
+          if (ratingFilter === "") {
+            return true;
+          }
+          return (
+            Number.parseFloat(movie.rating) >= Number.parseFloat(ratingFilter)
+          );
+        })
     );
-  }, [allMovies, searchTerm, genreFilter]);
+  }, [allMovies, searchTerm, genreFilter, ratingFilter]);
 
   return (
     <>
-      <GenreFilter setGenre={setGenreFilter}></GenreFilter>
+      <div className="filter-bar">
+        <div className="filter-slot">
+          <GenreFilter setGenre={setGenreFilter}></GenreFilter>
+        </div>
+        <div className="filter-slot">
+          <RatingFilter setRating={setRatingFilter}></RatingFilter>
+        </div>
+      </div>
 
       <SearchBar setSearchTerm={setSearchTerm}></SearchBar>
 

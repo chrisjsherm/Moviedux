@@ -11,7 +11,11 @@ export default function GenreFilter({ setGenre }) {
       <label for="genreFilter" style={{ "margin-right": "7px" }}>
         Genre
       </label>
-      <select id="genreFilter" onChange={onGenreChange}>
+      <select
+        id="genreFilter"
+        className="filter-dropdown"
+        onChange={onGenreChange}
+      >
         <option value="">All</option>
         <option value="action">Action</option>
         <option value="drama">Drama</option>
