@@ -9,7 +9,7 @@ export default function RatingFilter({ setRating }) {
   return (
     <>
       <label for="ratingFilter" style={{ "margin-right": "7px" }}>
-        Minimum Rating
+        Rating
       </label>
       <select
         id="ratingFilter"
@@ -17,8 +17,8 @@ export default function RatingFilter({ setRating }) {
         onChange={onRatingChange}
       >
         <option value="">Any</option>
-        <option value="8">8</option>
-        <option value="5">5</option>
+        <option value="8">Good</option>
+        <option value="5">Okay</option>
       </select>
     </>
   );

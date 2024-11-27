@@ -38,9 +38,7 @@ export default function MoviesGrid() {
           if (ratingFilter === "") {
             return true;
           }
-          return (
-            Number.parseFloat(movie.rating) >= Number.parseFloat(ratingFilter)
-          );
+          return movie.rating >= Number.parseFloat(ratingFilter);
         })
     );
   }, [allMovies, searchTerm, genreFilter, ratingFilter]);
