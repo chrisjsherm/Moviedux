@@ -13,7 +13,7 @@ export default function MoviesGrid() {
   return (
     <div className="movies-grid">
       {movies.map((movie) => (
-        <MovieCard movie={movie}></MovieCard>
+        <MovieCard movie={movie} key={movie.id}></MovieCard>
       ))}
     </div>
   );
