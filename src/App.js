@@ -30,8 +30,6 @@ function App() {
             <Route path="/watchlist" element={<Watchlist />}></Route>
           </Routes>
         </Router>
-
-        <MoviesGrid></MoviesGrid>
       </div>
 
       <Footer></Footer>
