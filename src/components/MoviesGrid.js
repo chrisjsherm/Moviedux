@@ -5,21 +5,11 @@ import SearchBar from "./SearchBar";
 import GenreFilter from "./GenreFilter";
 import RatingFilter from "./RatingFilter";
 
-export default function MoviesGrid() {
-  const [allMovies, setAllMovies] = useState([]);
+export default function MoviesGrid({ allMovies, watchlist, toggleWatchlist }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [genreFilter, setGenreFilter] = useState("");
   const [ratingFilter, setRatingFilter] = useState("");
-
-  useEffect(() => {
-    fetch("movies.json")
-      .then((response) => response.json())
-      .then((data) => {
-        setAllMovies(data);
-        return data;
-      });
-  }, []);
 
   useEffect(() => {
     setFilteredMovies(
@@ -58,7 +48,12 @@ export default function MoviesGrid() {
 
       <div className="movies-grid">
         {filteredMovies.map((movie) => (
-          <MovieCard movie={movie} key={movie.id}></MovieCard>
+          <MovieCard
+            movie={movie}
+            key={movie.id}
+            toggleWatchlist={toggleWatchlist}
+            isWatchlisted={watchlist.includes(movie.id)}
+          ></MovieCard>
         ))}
       </div>
     </>
